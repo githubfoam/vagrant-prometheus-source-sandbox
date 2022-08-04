@@ -41,15 +41,23 @@ jobs:
           path: ~/.moleculew
           key: Ansible-${{ matrix.ansible-version }}-${{ hashFiles('.moleculew/**') }}          
 
+      - name: Wrapper permissions
+        run: chmod 'u+x' moleculew && ls -lai moleculew
+          
+        
       - name: Install dependencies
         if: steps.molecule-cache.outputs.cache-hit != 'true'
-        run: |
-          chmod 'u+x' moleculew 
-          ./moleculew wrapper-install
+        run: ./moleculew wrapper-install
+        # run: |
+        #   chmod 'u+x' moleculew 
+        #   ./moleculew wrapper-install
 
 
       - name: Dependency versions
         run: ./moleculew wrapper-versions
-    
-      - name: Molecule test 
-        run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
+
+      - name: Molecule debug test 
+        run: ./moleculew --debug test --scenario-name=${{ matrix.molecule-scenario }}
+
+      # - name: Molecule test 
+      #   run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
