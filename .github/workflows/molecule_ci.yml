@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         ansible-version:
-          - '2.10.7' # max-ansible-test-version
+          - '2.10.7' 
         molecule-scenario:
           - ubuntu2004
     env:
@@ -44,3 +44,9 @@ jobs:
       - name: Install dependencies
         if: steps.molecule-cache.outputs.cache-hit != 'true'
         run: ./moleculew wrapper-install
+
+      - name: Dependency versions
+        run: ./moleculew wrapper-versions
+
+      - name: Molecule test 
+        run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
