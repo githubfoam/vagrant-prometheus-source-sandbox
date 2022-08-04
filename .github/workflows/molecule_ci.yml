@@ -47,11 +47,7 @@ jobs:
 
 
       - name: Dependency versions
-        # run: ./moleculew wrapper-versions
-        run: |
-          pwd
-          ls -lai
-          # ./moleculew wrapper-versions      
-          bash -c ./moleculew wrapper-versions      
+        run: ./moleculew wrapper-versions
+    
       - name: Molecule test 
         run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
