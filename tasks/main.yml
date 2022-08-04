@@ -1,0 +1,6 @@
+---
+- name: create download directory
+  file:
+    state: directory
+    mode: 'u=rwx,go=rx'
+    dest: '{{ minikube_download_dir }}'
