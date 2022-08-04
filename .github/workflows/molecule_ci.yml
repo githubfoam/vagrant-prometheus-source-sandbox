@@ -45,8 +45,13 @@ jobs:
         if: steps.molecule-cache.outputs.cache-hit != 'true'
         run: ./moleculew wrapper-install
 
-      - name: Dependency versions
-        run: ./moleculew wrapper-versions
 
+      - name: Dependency versions
+        # run: ./moleculew wrapper-versions
+        run: |
+          pwd
+          ls -lai
+          # ./moleculew wrapper-versions      
+          bash -c ./moleculew wrapper-versions      
       - name: Molecule test 
         run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
