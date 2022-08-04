@@ -46,7 +46,11 @@ jobs:
         run: ./moleculew wrapper-install
 
       - name: Dependency versions
-        run: ./moleculew wrapper-versions
+        # run: ./moleculew wrapper-install
+        run: |
+          pwd
+          ls -lai
+          ./moleculew wrapper-install
 
       - name: Molecule test 
         run: ./moleculew test --scenario-name=${{ matrix.molecule-scenario }}
