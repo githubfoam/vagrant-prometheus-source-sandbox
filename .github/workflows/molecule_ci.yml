@@ -41,4 +41,6 @@ jobs:
           path: ~/.moleculew
           key: Ansible-${{ matrix.ansible-version }}-${{ hashFiles('.moleculew/**') }}          
 
-
+      - name: Install dependencies
+        if: steps.molecule-cache.outputs.cache-hit != 'true'
+        run: ./moleculew wrapper-install
