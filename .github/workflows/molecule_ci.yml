@@ -43,7 +43,9 @@ jobs:
 
       - name: Install dependencies
         if: steps.molecule-cache.outputs.cache-hit != 'true'
-        run: chmod 'u+x' moleculew && ./moleculew wrapper-install
+        run: |
+          chmod 'u+x' moleculew 
+          ./moleculew wrapper-install
 
 
       - name: Dependency versions
